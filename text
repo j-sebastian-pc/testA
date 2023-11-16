@@ -1,0 +1,74 @@
+// deberia responder con un 200 de estado
+    test('should respond with a 200 status code', async () => {
+        const response = await request(app).post("/tasks");  
+        expect(response.statusCode).toBe(200);
+    });
+
+    // esto deberia responder con json object
+    test('should have a content-type: application/json in header', async () => {
+        const response = await request(app).post('/tasks');
+
+        expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+    });
+
+    // comprobar si responde con un objeto json conteniendo una nueva tarea con id
+    test("should respond with a task ID", async () => {
+        const response = await request(app).post("/tasks").send({
+            title: "test tasks",
+            description: "test description",
+        });
+
+        expect(response.body.id).toBeDefined();
+    });
+
+
+     const newTask = {
+            title: "title task",
+            description: "test Description", // Fix the typo here
+        };
+
+        // debería responder con un 200 de estado
+        test('should respond with a 200 status code', async () => {
+            const response = await request(app).post("/tasks").send(newTask);
+            expect(response.statusCode).toBe(200);
+        });
+
+        // esto debería responder con un json object
+        test('should have a content-type: application/json in header', async () => {
+            const response = await request(app).post('/tasks').send(newTask);
+
+            expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+        });
+
+        // comprobar si responde con un objeto json conteniendo una nueva tarea con id
+        test("should respond with a task ID", async () => {
+            const response = await request(app).post("/tasks").send(newTask);
+
+            expect(response.body.id).toBeDefined();
+        });
+
+        -----------------------------------------------
+        const newTask = {
+            title: "title task",
+            description: "test Description", // Fix the typo here
+        };
+
+        // debería responder con un 200 de estado
+        test('should respond with a 200 status code', async () => {
+            const response = await request(app).post("/tasks").send(newTask);
+            expect(response.statusCode).toBe(200);
+        });
+
+        // esto debería responder con un json object
+        test('should have a content-type: application/json in header', async () => {
+            const response = await request(app).post('/tasks').send(newTask);
+
+            expect(response.headers["content-type"]).toEqual(expect.stringContaining("json"));
+        });
+
+        // comprobar si responde con un objeto json conteniendo una nueva tarea con id
+        test("should respond with a task ID", async () => {
+            const response = await request(app).post("/tasks").send(newTask);
+
+            expect(response.body.id).toBeDefined();
+        });
